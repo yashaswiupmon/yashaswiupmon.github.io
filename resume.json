@@ -156,13 +156,17 @@
       "citation": "Student performance prediction using classification models",
       "venue": "Published in SIC",
       "description": "Used SMOTE Algorithm to balance the collected data from global universities and leverage various machine learning classification models with hyperparameter tuning.",
-      "url": "https://link.springer.com/chapter/10.1007/978-981-16-9669-5_17"
+      "url": "https://link.springer.com/chapter/10.1007/978-981-16-9669-5_17",
+      "image": "images/student performance prediction.png",
+      "imageAlt": "Student performance prediction research infographic"
     },
     {
       "citation": "A peak detection algorithm for localization and classification of heart sounds in PCG signals using K-Means Clustering",
       "venue": "Published in IEEE",
       "description": "Fully automated algorithm using K-means clustering to localize and classify heart sounds from PCG signals, achieving a 94.75% classification accuracy with SVM, while reducing computational complexity compared to traditional methods.",
-      "url": "https://www.techrxiv.org/doi/full/10.36227/techrxiv.15134493.v1"
+      "url": "https://www.techrxiv.org/doi/full/10.36227/techrxiv.15134493.v1",
+      "image": "images/Peak Detection.png",
+      "imageAlt": "Peak detection research infographic for classifying heart sounds in phonocardiogram signals"
     }
   ],
   "certifications": [
