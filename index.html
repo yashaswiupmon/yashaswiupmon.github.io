@@ -7,157 +7,173 @@
 <meta name="description" content="Platform engineer building cloud infrastructure and delivery pipelines at State Street, Bangalore.">
 <style>
   :root {
-    --bg: #eef2f5;
-    --surface: #ffffff;
-    --ink: #14213d;
-    --muted: #4d5b73;
-    --line: #cdd6e0;
-    --accent: #0b6e79;
-    --accent-ink: #ffffff;
-    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --bg: #f3f6f9; --surface: #fff; --ink: #14213d; --muted: #4d5b73; --line: #d3dbe4;
+    --accent: #0b6e79; --hero: #0f2a43; --hero-ink: #fff; --hero-soft: #b9c9dc; --bar: #dfe7ee;
+    --serif: "Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #0f1b2d;
-      --surface: #16253b;
-      --ink: #e8eef6;
-      --muted: #a4b2c6;
-      --line: #2b3d57;
-      --accent: #5cc4cf;
-      --accent-ink: #0f1b2d;
+      --bg: #0c1626; --surface: #14233a; --ink: #e8eef6; --muted: #a4b2c6; --line: #2b3d57;
+      --accent: #5cc4cf; --hero: #0a1424; --bar: #2b3d57;
     }
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font: 1.0625rem/1.65 var(--sans);
-  }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 1.0625rem/1.65 var(--sans); }
   a { color: var(--accent); text-underline-offset: 3px; }
-  a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
-  .wrap { max-width: 44rem; margin: 0 auto; padding: 0 1.25rem; }
+  a:focus-visible, .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .wrap { max-width: 56rem; margin: 0 auto; padding: 0 1.25rem; }
 
-  header { padding: 4.5rem 0 2.5rem; }
-  h1 {
-    font: 700 clamp(2.6rem, 8vw, 4.25rem)/1.02 var(--serif);
-    letter-spacing: -0.02em;
-    margin: 0 0 1rem;
-  }
-  .lede { font: 1.35rem/1.45 var(--serif); color: var(--muted); max-width: 34rem; margin: 0 0 1.75rem; }
-  .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
-  .btn {
-    display: inline-block; padding: .65rem 1.1rem; border-radius: 6px;
-    font-weight: 600; text-decoration: none; border: 2px solid var(--accent);
-  }
-  .btn.primary { background: var(--accent); color: var(--accent-ink); }
-  .btn.ghost { color: var(--accent); }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; background: var(--hero); }
+  nav .wrap { display: flex; gap: 1.4rem; overflow-x: auto; white-space: nowrap; padding-top: .9rem; padding-bottom: .9rem; }
+  nav a { color: var(--hero-soft); text-decoration: none; font-size: .95rem; font-weight: 600; }
+  nav a:hover { color: var(--hero-ink); }
 
-  section { padding: 2.25rem 0; border-top: 1px solid var(--line); }
-  h2 { font: 700 1.6rem/1.2 var(--serif); margin: 0 0 1.25rem; }
-  p { margin: 0 0 1rem; max-width: 40rem; }
+  .hero { background: var(--hero); color: var(--hero-ink); text-align: center; padding: 7rem 1.25rem 4rem; }
+  .photo { width: 9.5rem; height: 9.5rem; border-radius: 50%; margin: 0 auto 1.5rem; border: 4px solid var(--hero-soft);
+    background: #1c4160 center/cover; display: grid; place-items: center; font: 700 2.6rem var(--serif); overflow: hidden; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  h1 { font: 700 clamp(2.4rem,7vw,3.8rem)/1.05 var(--serif); letter-spacing: -.02em; margin: 0 0 .75rem; }
+  .tag { font: 1.25rem/1.45 var(--serif); color: var(--hero-soft); max-width: 34rem; margin: 0 auto 1.75rem; }
+  .btn { display: inline-block; padding: .7rem 1.3rem; border-radius: 6px; font-weight: 700; text-decoration: none;
+    background: var(--hero-ink); color: var(--hero); }
+  .social { display: flex; justify-content: center; gap: 1.25rem; margin-top: 1.5rem; }
+  .social a { color: var(--hero-ink); font-weight: 600; }
 
-  /* Career path is a real sequence, so a timeline fits */
-  .timeline { list-style: none; margin: 0; padding: 0 0 0 1.4rem; border-left: 2px solid var(--line); }
-  .timeline li { position: relative; padding-bottom: 1.5rem; }
-  .timeline li:last-child { padding-bottom: 0; }
-  .timeline li::before {
-    content: ""; position: absolute; left: calc(-1.4rem - 7px); top: .55rem;
-    width: 12px; height: 12px; border-radius: 50%;
-    background: var(--bg); border: 3px solid var(--accent);
-  }
-  .timeline strong { display: block; font-size: 1.1rem; }
-  .timeline span { color: var(--muted); font-size: .95rem; }
+  section { padding: 3rem 0; border-bottom: 1px solid var(--line); }
+  h2 { font: 700 1.8rem/1.2 var(--serif); margin: 0 0 1.5rem; }
+  p { margin: 0 0 1rem; max-width: 42rem; }
 
-  dl { margin: 0; display: grid; grid-template-columns: 9rem 1fr; gap: .9rem 1.25rem; }
-  dt { font-weight: 700; }
-  dd { margin: 0; color: var(--muted); }
-  @media (max-width: 34rem) { dl { grid-template-columns: 1fr; gap: .15rem; } dd { margin-bottom: .9rem; } }
+  .info { display: grid; grid-template-columns: repeat(auto-fit,minmax(14rem,1fr)); gap: 1rem 2rem; margin-top: 1.5rem; }
+  .info b { display: block; }
+  .info span { color: var(--muted); }
 
-  ul.plain { padding-left: 1.2rem; margin: 0; max-width: 40rem; }
-  ul.plain li { margin-bottom: .6rem; }
+  .skills { display: grid; grid-template-columns: repeat(auto-fit,minmax(18rem,1fr)); gap: 1.1rem 3rem; }
+  .skill { display: flex; justify-content: space-between; font-weight: 600; margin-bottom: .3rem; }
+  .skill small { color: var(--muted); font-weight: 400; }
+  .bar { height: 8px; border-radius: 4px; background: var(--bar); }
+  .bar i { display: block; height: 100%; border-radius: 4px; background: var(--accent); width: var(--w); }
 
-  footer { padding: 2rem 0 4rem; color: var(--muted); font-size: .95rem; border-top: 1px solid var(--line); }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit,minmax(16rem,1fr)); gap: 1.25rem; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.25rem; }
+  .card h3 { margin: 0 0 .5rem; font: 700 1.15rem var(--serif); }
+  .card p { color: var(--muted); font-size: .98rem; margin-bottom: .75rem; }
+
+  .job { display: grid; grid-template-columns: 11rem 1fr; gap: .5rem 2rem; margin-bottom: 2.25rem; }
+  .when { color: var(--muted); font-weight: 600; }
+  .job h3 { margin: 0; font: 700 1.2rem var(--serif); }
+  .job .where { color: var(--muted); margin-bottom: .6rem; }
+  .job ul, ul.plain { margin: 0; padding-left: 1.2rem; }
+  .job li, .plain li { margin-bottom: .45rem; }
+  @media (max-width: 40rem) { .job { grid-template-columns: 1fr; } }
+
+  footer { padding: 2rem 0 3rem; text-align: center; color: var(--muted); font-size: .95rem; }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <header>
-    <!-- EDIT: change your name, headline and links below -->
-    <h1>Yashaswi Upmon</h1>
-    <p class="lede">Platform engineer at State Street in Bangalore. I build and run the cloud infrastructure and delivery pipelines that other engineering teams ship on.</p>
-    <div class="actions">
-      <a class="btn primary" href="mailto:yashaswiupmon2407@gmail.com">Email me</a>
-      <a class="btn ghost" href="https://www.linkedin.com/in/yashaswi-upmon-149491148/">LinkedIn</a>
-      <a class="btn ghost" href="https://github.com/yashaswiupmon">GitHub</a>
+<nav aria-label="Sections"><div class="wrap">
+  <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a>
+  <a href="#experience">Experience</a><a href="#publications">Publications</a><a href="#education">Education</a>
+</div></nav>
+
+<header class="hero">
+  <!-- EDIT: put your photo at images/photo.jpg (a square crop works best). Until then, your initials show. -->
+  <div class="photo"><img src="images/photo.jpg" alt="Portrait of Yashaswi Upmon" onerror="this.remove()">YU</div>
+  <h1>Yashaswi Upmon</h1>
+  <p class="tag">Platform engineer working on cloud infrastructure, Kubernetes and delivery pipelines</p>
+  <!-- EDIT: save your resume as resume.pdf in the same folder as index.html -->
+  <a class="btn" href="Yashaswi Upmon.pdf">View my resume</a>
+  <div class="social">
+    <a href="https://github.com/your-github-username">GitHub</a>
+    <a href="https://www.linkedin.com/in/your-linkedin-id/">LinkedIn</a>
+    <a href="mailto:your-email@example.com">Email</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="about">
+    <h2>About</h2>
+    <p>Hello, I’m Yashaswi. I’m a platform engineer at State Street in Bangalore, where I joined as an intern in 2022 and have grown into leading platform work. I build repeatable infrastructure on AWS, Azure and OCI with Terraform, Helm and Kubernetes, so that application teams can release safely and often.</p>
+    <p>Before platform engineering I worked in MLOps on Azure ML, DataRobot and Databricks. I studied Information Technology at KIIT, Bhubaneswar, and have co-authored three research papers.</p>
+    <div class="info">
+      <div><b>Location</b><span>Bangalore, India</span></div>
+      <div><b>Email</b><span>your-email@example.com</span></div>
+      <div><b>Languages</b><span>English, Hindi</span></div> <!-- EDIT: check this is right -->
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section id="about">
-      <h2>About</h2>
-      <p>I work across AWS, Azure and OCI, using Terraform, Helm and Kubernetes to make infrastructure repeatable and releases boring. I started in MLOps, running model workflows on Azure ML, DataRobot and Databricks, and moved into platform engineering from there.</p>
-      <p>I studied Information Technology at KIIT, Bhubaneswar, and have co-authored three research papers.</p>
-    </section>
+  <section id="skills">
+    <h2>Skills</h2>
+    <!-- EDIT: set each bar with --w and the label to your honest level -->
+    <div class="skills">
+      <div><div class="skill">AWS <small>EKS, ECS, Lambda</small></div><div class="bar"><i style="--w:85%"></i></div></div>
+      <div><div class="skill">Kubernetes &amp; Helm</div><div class="bar"><i style="--w:85%"></i></div></div>
+      <div><div class="skill">Terraform</div><div class="bar"><i style="--w:85%"></i></div></div>
+      <div><div class="skill">Azure &amp; Azure DevOps</div><div class="bar"><i style="--w:75%"></i></div></div>
+      <div><div class="skill">Ansible</div><div class="bar"><i style="--w:70%"></i></div></div>
+      <div><div class="skill">OCI</div><div class="bar"><i style="--w:60%"></i></div></div>
+      <div><div class="skill">MLOps <small>Azure ML, DataRobot, Databricks</small></div><div class="bar"><i style="--w:70%"></i></div></div>
+    </div>
+  </section>
 
-    <section id="experience">
-      <h2>Experience</h2>
-      <!-- EDIT: add dates and one line about what you did in each role -->
-      <ol class="timeline">
-        <li>
-          <strong>Platform Engineer (Emerging Lead)</strong>
-          <span>State Street Corporation, Bangalore · since April 2026</span>
-        </li>
-        <li>
-          <strong>Senior Associate</strong>
-          <span>State Street Corporation, Bangalore</span>
-        </li>
-        <li>
-          <strong>Associate 2</strong>
-          <span>State Street Corporation, Bangalore</span>
-        </li>
-        <li>
-          <strong>Intern</strong>
-          <span>State Street Corporation, Bangalore · from January 2022</span>
-        </li>
-      </ol>
-    </section>
+  <section id="projects">
+    <h2>Projects</h2>
+    <!-- EDIT: replace each card with a real project, and link it to its GitHub repo or write-up -->
+    <div class="cards">
+      <div class="card"><h3>Project name</h3><p>One or two lines on the problem, your approach, the tools you used and the result, ideally with a number.</p><a href="https://github.com/your-github-username/your-repo">View on GitHub</a></div>
+      <div class="card"><h3>Project name</h3><p>For example: a Terraform module, a CI/CD pipeline or a Kubernetes setup you can share without exposing employer code.</p><a href="https://github.com/your-github-username/your-repo">View on GitHub</a></div>
+      <div class="card"><h3>Project name</h3><p>Personal and open-source projects work best here. Keep confidential work out.</p><a href="https://github.com/your-github-username/your-repo">View on GitHub</a></div>
+    </div>
+  </section>
 
-    <section id="skills">
-      <h2>Skills</h2>
-      <dl>
-        <dt>Cloud</dt><dd>AWS (EKS, ECS, Lambda), Azure, OCI</dd>
-        <dt>Infrastructure as code</dt><dd>Terraform, Ansible, Helm</dd>
-        <dt>Containers</dt><dd>Kubernetes, Docker</dd>
-        <dt>Delivery</dt><dd>Azure DevOps pipelines</dd>
-        <dt>MLOps</dt><dd>Azure ML, DataRobot, Databricks</dd>
-      </dl>
-    </section>
+  <section id="experience">
+    <h2>Work experience</h2>
+    <!-- EDIT: replace the hint bullets with what you actually did -->
+    <div class="job">
+      <div class="when">Apr 2026 – present</div>
+      <div>
+        <h3>Platform Engineer (Emerging Lead)</h3>
+        <div class="where">State Street Corporation, Bangalore</div>
+        <ul><li>What you own or lead, in one line.</li><li>A result with a number, such as time saved or reliability gained.</li></ul>
+      </div>
+    </div>
+    <div class="job">
+      <div class="when">Jan 2022 – Apr 2026</div>
+      <div>
+        <h3>Intern, Associate 2, Senior Associate</h3>
+        <div class="where">State Street Corporation, Bangalore</div>
+        <ul><li>Cloud and DevOps work across AWS, Azure and OCI.</li><li>MLOps work on Azure ML, DataRobot and Databricks.</li></ul>
+      </div>
+    </div>
+  </section>
 
-    <section id="publications">
-      <h2>Publications</h2>
-      <!-- EDIT: replace each line with the full paper title, and wrap it in a link to the paper -->
-      <ul class="plain">
-        <li>Paper on knowledge graphs and stock price prediction</li>
-        <li>Paper on predicting student performance</li>
-        <li>Paper on peak detection in heart sound signals</li>
-      </ul>
-    </section>
+  <section id="publications">
+    <h2>Research publications</h2>
+    <!-- EDIT: use the full citation of each paper and link its DOI -->
+    <ul class="plain">
+      <li>Paper on knowledge graphs and stock price prediction. <a href="#">DOI</a></li>
+      <li>Paper on predicting student performance. <a href="#">DOI</a></li>
+      <li>Paper on peak detection in heart sound signals. <a href="#">DOI</a></li>
+    </ul>
+  </section>
 
-    <section id="education">
-      <h2>Education</h2>
-      <p><strong>B.Tech, Information Technology</strong><br>KIIT, Bhubaneswar · 2018 to 2022</p>
-    </section>
-  </main>
+  <section id="education" style="border-bottom:0">
+    <h2>Education</h2>
+    <div class="job">
+      <div class="when">2018 – 2022</div>
+      <div>
+        <h3>B.Tech in Information Technology</h3>
+        <div class="where">KIIT, Bhubaneswar, India</div>
+      </div>
+    </div>
+  </section>
 
-  <footer>
-    <p>© 2026 Yashaswi Upmon. Views here are my own and not State Street's.</p>
-  </footer>
+</main>
 
-</div>
+<footer><div class="wrap">© 2026 Yashaswi Upmon. Views here are my own and not State Street’s.</div></footer>
 </body>
 </html>
