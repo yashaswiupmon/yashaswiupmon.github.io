@@ -1,22 +1,26 @@
 # yashaswiupmon.github.io
 
-This repository contains the resume website and the source resume PDF.
+This repository contains a JSON-driven resume website and its source resume PDF.
+The single-page design is inspired by the React Resume Template demo while
+remaining a static site, so it can be published directly with GitHub Pages.
 
 ## Publishing
 
 The `Build and deploy resume site` workflow generates `resume.json` from
-`resume.pdf`, saves any changes back to the repository, and then deploys the
-site to GitHub Pages. The deployment job waits for the build job to finish.
-The workflow runs on pushes and can also be started manually from the Actions
-tab. In the repository's **Settings → Pages**, set the build and deployment
-source to **GitHub Actions**.
+`resume.pdf`, saves any changes back to the repository, builds the static site
+artifact, and deploys it to GitHub Pages. The deployment job waits for the
+build job to finish. The workflow runs on pushes to the default branch and can
+also be started manually from the Actions tab. In the repository's
+**Settings → Pages**, set the build and deployment source to **GitHub Actions**.
 
 The page supports light and dark themes. Visitors can switch using the button
 in the navigation bar; their choice is saved in their browser.
 
-The first research publication is shown as an image-backed card. Its
-description appears on hover or keyboard focus, and stays visible on touch
-devices. Its image metadata is retained when the resume PDF is parsed.
+The homepage has About, Resume, Portfolio, and Contact sections. Research
+publications and projects are shown as image-backed portfolio cards. Card
+details are available on hover or keyboard focus, and the details remain
+visible on touch devices. Publication image metadata is retained when the
+resume PDF is parsed.
 
 ## Adding a custom resume section
 

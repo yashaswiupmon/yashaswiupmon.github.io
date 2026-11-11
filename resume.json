@@ -18,8 +18,8 @@
     }
   ],
   "about": [
-    "Hello, I’m Yashaswi. I’m a platform engineer at State Street in Bangalore, where I joined as an intern in January 2022 and now lead platform work as an Emerging Lead. I build the Kubernetes platforms, infrastructure as code and observability that application teams deploy on, across AWS, Azure and OCI.",
-    "Earlier in my career I worked in MLOps on Azure ML, DataRobot and Databricks. I studied Information Technology at KIIT, Bhubaneswar, and have published three research papers."
+    "I am a Platform and Cloud Engineer with ~4.5 years of experience architecting, automating, and operating secure, resilient enterprise infrastructure across Multi Cloud(AWS, Azure, and OCI). My core focus centers on transforming complex cloud environments into scalable, self-healing platforms that accelerate software delivery while maintaining strict organizational governance. By leveraging Infrastructure as Code through Terraform and advancing DevOps best practices, I streamline engineering workflows, accelerate software deployment, and ensure consistent, efficient delivery across complex, multi-tenant environments.",
+    "Bringing extensive expertise to the design of scalable backend systems and resilient distributed architectures, I possess deep hands-on experience building cloud-native platforms using Docker, Kubernetes, and Helm. I am highly skilled in engineering robust CI/CD pipelines from scratch, managing multi-cloud resource provisioning, and ensuring high availability within production environments. Driven by a passion for structural efficiency and platform governance, I thrive on solving complex reliability puzzles and building the foundational infrastructure that empowers application teams to scale seamlessly."
   ],
   "info": [
     {
