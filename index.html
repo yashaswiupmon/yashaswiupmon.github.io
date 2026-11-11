@@ -98,8 +98,8 @@
   <section id="about"><h2>About</h2><div id="about-text"></div><div class="info" id="info"></div></section>
   <section id="skills"><h2>Skills</h2><div class="skills" id="skills-list"></div></section>
   <section id="projects"><h2>Projects</h2><div class="cards" id="projects-list"></div></section>
-  <section id="experience"><h2>Work experience</h2><div id="work-list"></div></section>
-  <section id="publications"><h2>Research publications</h2><ul class="plain" id="pubs-list"></ul></section>
+  <section id="experience"><h2>Work Experience</h2><div id="work-list"></div></section>
+  <section id="publications"><h2>Research Publications</h2><ul class="plain" id="pubs-list"></ul></section>
   <section id="certifications"><h2>Certifications &amp; awards</h2><ul class="plain" id="certs-list"></ul></section>
   <section id="education" style="border-bottom:0"><h2>Education</h2><div id="edu-list"></div></section>
 </main>
@@ -161,7 +161,7 @@ fetch("resume.json?v=" + Date.now(), { cache: "no-store" })
       h("div", { class: "when" }, e.dates),
       h("div", {}, h("h3", {}, e.title), h("div", { class: "where" }, e.school)))));
 
-    $("foot").textContent = "© " + new Date().getFullYear() + " " + d.name + ". Views here are my own and not my employer’s.";
+    $("foot").textContent = "© " + new Date().getFullYear() + " " + d.name;
   })
   .catch(() => { $("err").hidden = false; });
 </script>
