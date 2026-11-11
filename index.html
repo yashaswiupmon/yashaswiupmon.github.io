@@ -23,13 +23,16 @@
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body { margin: 0; background: var(--bg); color: var(--ink); font: 1.0625rem/1.65 var(--sans); }
   a { color: var(--accent); text-underline-offset: 3px; }
-  a:focus-visible, .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
   .wrap { max-width: 56rem; margin: 0 auto; padding: 0 1.25rem; }
 
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 10; background: var(--hero); }
   nav .wrap { display: flex; gap: 1.4rem; overflow-x: auto; white-space: nowrap; padding-top: .9rem; padding-bottom: .9rem; }
   nav a { color: var(--hero-soft); text-decoration: none; font-size: .95rem; font-weight: 600; }
   nav a:hover { color: var(--hero-ink); }
+  .theme-toggle { margin-left: auto; flex: 0 0 auto; border: 1px solid var(--hero-soft); border-radius: 999px;
+    padding: .25rem .75rem; background: transparent; color: var(--hero-ink); font: 600 .9rem var(--sans); cursor: pointer; }
+  .theme-toggle:hover { background: var(--hero-ink); color: var(--hero); }
 
   .hero { background: var(--hero); color: var(--hero-ink); text-align: center; padding: 7rem 1.25rem 4rem; }
   .photo { width: 9.5rem; height: 9.5rem; border-radius: 50%; margin: 0 auto 1.5rem; border: 4px solid var(--hero-soft);
@@ -65,6 +68,23 @@
   .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.25rem; }
   .card h3 { margin: 0 0 .5rem; font: 700 1.15rem var(--serif); }
   .card p { color: var(--muted); font-size: .98rem; margin-bottom: .75rem; }
+  .publication-list { display: grid; gap: 1.25rem; }
+  .publication-list > li { margin-bottom: 0; }
+  .publication-card { position: relative; display: block; max-width: 34rem; height: 19rem; overflow: hidden;
+    padding: 0; color: #fff; text-decoration: none; isolation: isolate; }
+  .publication-card img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .35s ease; }
+  .publication-card-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 1.5rem; background: linear-gradient(transparent 8%, rgb(8 20 35 / 92%) 100%);
+    opacity: 0; transition: opacity .25s ease; }
+  .publication-card h3 { color: #fff; font-size: 1.35rem; }
+  .publication-card p { color: #e8eef6; margin-bottom: .4rem; }
+  .publication-card .publication-cta { color: #fff; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+  .publication-card:hover img, .publication-card:focus-within img { transform: scale(1.04); }
+  .publication-card:hover .publication-card-overlay, .publication-card:focus-within .publication-card-overlay { opacity: 1; }
+  @media (hover: none), (prefers-reduced-motion: reduce) {
+    .publication-card .publication-card-overlay { opacity: 1; }
+    .publication-card img { transition: none; }
+  }
 
   .job { display: grid; grid-template-columns: 11rem 1fr; gap: .5rem 2rem; margin-bottom: 2.25rem; }
   .when { color: var(--muted); font-weight: 600; }
@@ -82,6 +102,7 @@
 <nav aria-label="Sections"><div class="wrap">
   <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a>
   <a href="#experience">Experience</a><a href="#publications">Publications</a><a href="#certifications">Certifications</a><a href="#education">Education</a>
+  <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">Dark theme</button>
 </div></nav>
 
 <header class="hero">
@@ -99,7 +120,7 @@
   <section id="skills"><h2>Skills</h2><div class="skills" id="skills-list"></div></section>
   <section id="projects"><h2>Projects</h2><div class="cards" id="projects-list"></div></section>
   <section id="experience"><h2>Work Experience</h2><div id="work-list"></div></section>
-  <section id="publications"><h2>Research Publications</h2><ul class="plain" id="pubs-list"></ul></section>
+  <section id="publications"><h2>Research Publications</h2><div class="publication-list" id="pubs-list"></div></section>
   <section id="certifications"><h2>Certifications &amp; awards</h2><ul class="plain" id="certs-list"></ul></section>
   <section id="education" style="border-bottom:0"><h2>Education</h2><div id="edu-list"></div></section>
 </main>
@@ -110,6 +131,30 @@
 // Builds the whole page from resume.json, so you only ever edit that one file.
 const $ = id => document.getElementById(id);
 const safe = u => /^(https?:|mailto:)/.test(u || "") ? u : "";
+const themeToggle = $("theme-toggle");
+let savedTheme;
+try {
+  savedTheme = localStorage.getItem("resume-theme");
+} catch (error) {
+  console.warn("Could not read the saved theme preference.", error);
+}
+const setTheme = theme => {
+  document.documentElement.dataset.theme = theme;
+  themeToggle.setAttribute("aria-pressed", String(theme === "dark"));
+  themeToggle.textContent = theme === "dark" ? "Light theme" : "Dark theme";
+};
+setTheme(savedTheme === "light" || savedTheme === "dark"
+  ? savedTheme
+  : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"));
+themeToggle.addEventListener("click", () => {
+  const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  setTheme(nextTheme);
+  try {
+    localStorage.setItem("resume-theme", nextTheme);
+  } catch (error) {
+    console.warn("Could not save the theme preference.", error);
+  }
+});
 function h(tag, props, ...kids) {
   const e = document.createElement(tag);
   for (const k in props || {}) k === "class" ? e.className = props[k] : e.setAttribute(k, props[k]);
@@ -137,17 +182,25 @@ fetch("resume.json?v=" + Date.now(), { cache: "no-store" })
     (d.skills || []).forEach(g => $("skills-list").append(
       h("div", {}, h("h3", { class: "grp" }, g.group), h("div", { class: "chips" }, (g.items || []).map(i => h("span", {}, i))))));
 
-    (d.projects || []).forEach(p => $("projects-list").append(
-      h("div", { class: "card" }, h("h3", {}, p.title), h("p", {}, p.description), link("View project", p.url))));
-
     (d.work || []).forEach(w => $("work-list").append(h("div", { class: "job" },
       h("div", { class: "when" }, w.dates),
       h("div", {}, h("h3", {}, w.title), h("div", { class: "where" }, w.company),
         h("ul", {}, (w.bullets || []).map(b => h("li", {}, b)))))));
 
-    (d.publications || []).forEach(p => $("pubs-list").append(
-      h("li", {}, link(p.citation, p.url) || p.citation, " ", h("span", { class: "pub-venue" }, p.venue ? "· " + p.venue : ""),
-        p.description ? h("p", { class: "pub-desc" }, p.description) : "")));
+    (d.publications || []).forEach(p => {
+      if (p.image) {
+        $("pubs-list").append(h("article", { class: "card publication-card" },
+          h("img", { src: p.image, alt: p.imageAlt || p.citation }),
+          h("div", { class: "publication-card-overlay" },
+            h("h3", {}, p.citation),
+            h("p", {}, [p.venue, p.description].filter(Boolean).join(" · ")),
+            safe(p.url) ? h("a", { class: "publication-cta", href: safe(p.url) }, "Read publication") : null)));
+      } else {
+        $("pubs-list").append(h("li", {},
+          link(p.citation, p.url) || p.citation, " ", h("span", { class: "pub-venue" }, p.venue ? "· " + p.venue : ""),
+          p.description ? h("p", { class: "pub-desc" }, p.description) : ""));
+      }
+    });
 
     (d.certifications || []).forEach(c => $("certs-list").append(h("li", {}, link(c.name, c.url) || c.name)));
     (d.awards || []).forEach(a => $("certs-list").append(h("li", {}, a)));
@@ -160,6 +213,18 @@ fetch("resume.json?v=" + Date.now(), { cache: "no-store" })
     (d.education || []).forEach(e => $("edu-list").append(h("div", { class: "job" },
       h("div", { class: "when" }, e.dates),
       h("div", {}, h("h3", {}, e.title), h("div", { class: "where" }, e.school)))));
+
+    let customSectionAnchor = $("edu-list").parentElement;
+    (d.customSections || []).forEach((section, index) => {
+      const id = "custom-section-" + index;
+      const content = h("section", { id }, h("h2", {}, section.title));
+      if ((section.items || []).length) {
+        content.append(h("ul", { class: "plain" }, section.items.map(item => h("li", {}, item))));
+      }
+      customSectionAnchor.insertAdjacentElement("afterend", content);
+      customSectionAnchor = content;
+      themeToggle.parentElement.insertBefore(h("a", { href: "#" + id }, section.title), themeToggle);
+    });
 
     $("foot").textContent = "© " + new Date().getFullYear() + " " + d.name;
   })

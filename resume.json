@@ -87,6 +87,8 @@
     }
   ],
   "projects": [],
+  "customSectionHeadings": {},
+  "customSections": [],
   "work": [
     {
       "dates": "April 2026 – Present",
@@ -146,7 +148,9 @@
       "citation": "Exploring historical stock price movement using knowledge Graphs",
       "venue": "Published in FICTA",
       "description": "Implemented Knowledge Graphs Unsupervised Learning model for predicting average daily percentage in Facebook stock price based on news headline extracted from New York Times.",
-      "url": "https://link.springer.com/chapter/10.1007/978-981-16-6624-7_51"
+      "url": "https://link.springer.com/chapter/10.1007/978-981-16-6624-7_51",
+      "image": "images/Knowledge Graph Project.png",
+      "imageAlt": "Knowledge graph research infographic showing news and market data used to predict stock movement"
     },
     {
       "citation": "Student performance prediction using classification models",

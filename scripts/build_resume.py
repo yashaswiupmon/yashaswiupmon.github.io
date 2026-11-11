@@ -48,14 +48,33 @@ def split_items(s):
     if cur.strip(): items.append(cur.strip())
     return items
 
-def sections(lines):
+def normalize_heading(text):
+    return " ".join(text.casefold().split())
+
+def sections(lines, custom_headings):
     out, cur = {}, None
+    custom_keys = {normalize_heading(name): normalize_heading(name) for name in custom_headings}
     for parts in lines:
-        key = HEADINGS.get(" ".join(parts).lower())
+        heading = normalize_heading(" ".join(parts))
+        key = HEADINGS.get(heading)
+        if key is None and heading in custom_keys:
+            key = "custom:" + custom_keys[heading]
         if len(parts) == 1 and key:
             cur = key; out.setdefault(cur, []); continue
         if cur: out[cur].append(parts)
     return out
+
+def parse_custom_section(block):
+    items = []
+    for parts in block:
+        text = " ".join(parts)
+        if text.startswith("•"):
+            items.append(text.lstrip("• ").strip())
+        elif items:
+            items[-1] = join_wrapped(items[-1], text)
+        elif text:
+            items.append(text)
+    return items
 
 def bullets(block):
     """Group wrapped lines into bullets. Returns list of strings."""
@@ -143,8 +162,14 @@ def read_links(pdf_path):
 
 def main(pdf, out):
     lines = read_lines(pdf)
-    sec = sections(lines)
     data = json.load(open(out, encoding="utf-8")) if os.path.exists(out) else {}
+    custom_headings = data.get("customSectionHeadings", {})
+    if not isinstance(custom_headings, dict) or not all(
+        isinstance(name, str) and isinstance(title, str)
+        for name, title in custom_headings.items()
+    ):
+        sys.exit("ERROR: customSectionHeadings must map PDF heading names to display titles.")
+    sec = sections(lines, custom_headings)
 
     work = parse_work(sec.get("work", []))
     if not work:
@@ -168,9 +193,25 @@ def main(pdf, out):
     for l in data.get("links", []):
         if l.get("label") in header: l["url"] = header[l["label"]]
 
+    for pub in pubs:
+        existing = next(
+            (item for item in data.get("publications", []) if item.get("citation") == pub["citation"]),
+            None,
+        )
+        if existing:
+            for field in ("image", "imageAlt"):
+                if field in existing:
+                    pub[field] = existing[field]
+
+    custom_sections = [
+        {"title": title, "items": parse_custom_section(sec.get("custom:" + normalize_heading(name), []))}
+        for name, title in custom_headings.items()
+        if "custom:" + normalize_heading(name) in sec
+    ]
     data.update({"skills": parse_skills(sec.get("skills", [])), "work": work,
                  "publications": pubs, "certifications": certs, "awards": awards,
-                 "education": parse_education(sec.get("education", []))})
+                 "education": parse_education(sec.get("education", [])),
+                 "customSections": custom_sections})
     with open(out, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2); f.write("\n")
     print(f"OK: {len(work)} roles, {len(pubs)} publications, {len(certs)} certifications, "
