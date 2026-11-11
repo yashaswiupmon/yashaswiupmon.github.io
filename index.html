@@ -56,6 +56,11 @@
   .bar { height: 8px; border-radius: 4px; background: var(--bar); }
   .bar i { display: block; height: 100%; border-radius: 4px; background: var(--accent); width: var(--w); }
 
+  .grp { margin: 0 0 .4rem; font: 700 1rem var(--sans); }
+  .chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .chips span { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: .15rem .75rem; font-size: .92rem; }
+  .pub-venue { color: var(--muted); font-size: .95rem; }
+  .pub-desc { color: var(--muted); font-size: .98rem; margin: .2rem 0 0; }
   .cards { display: grid; grid-template-columns: repeat(auto-fit,minmax(16rem,1fr)); gap: 1.25rem; }
   .card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.25rem; }
   .card h3 { margin: 0 0 .5rem; font: 700 1.15rem var(--serif); }
@@ -76,104 +81,89 @@
 
 <nav aria-label="Sections"><div class="wrap">
   <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a>
-  <a href="#experience">Experience</a><a href="#publications">Publications</a><a href="#education">Education</a>
+  <a href="#experience">Experience</a><a href="#publications">Publications</a><a href="#certifications">Certifications</a><a href="#education">Education</a>
 </div></nav>
 
 <header class="hero">
-  <!-- EDIT: put your photo at images/photo.jpg (a square crop works best). Until then, your initials show. -->
-  <div class="photo"><img src="images/photo.jpg" alt="Portrait of Yashaswi Upmon" onerror="this.remove()">YU</div>
-  <h1>Yashaswi Upmon</h1>
-  <p class="tag">Platform engineer working on cloud infrastructure, Kubernetes and delivery pipelines</p>
-  <!-- EDIT: save your resume as resume.pdf in the same folder as index.html -->
-  <a class="btn" href="Yashaswi Upmon.pdf">View my resume</a>
-  <div class="social">
-    <a href="https://github.com/yashaswiupmon">GitHub</a>
-    <a href="https://www.linkedin.com/in/yashaswi-upmon-149491148/">LinkedIn</a>
-    <a href="mailto:yashaswiupmon2407@gmail.com">Email</a>
-  </div>
+  <div class="photo" id="photo"></div>
+  <h1 id="name">Loading…</h1>
+  <p class="tag" id="tagline"></p>
+  <a class="btn" id="resume" href="resume.pdf">View my resume</a>
+  <div class="social" id="links"></div>
 </header>
 
 <main class="wrap">
-
-  <section id="about">
-    <h2>About</h2>
-    <p>Hello, I’m Yashaswi. I’m a platform engineer at State Street in Bangalore, where I joined as an intern in 2022 and have grown into leading platform work. I build repeatable infrastructure on AWS, Azure and OCI with Terraform, Helm and Kubernetes, so that application teams can release safely and often.</p>
-    <p>Before platform engineering I worked in MLOps on Azure ML, DataRobot and Databricks. I studied Information Technology at KIIT, Bhubaneswar, and have co-authored three research papers.</p>
-    <div class="info">
-      <div><b>Location</b><span>Bangalore, India</span></div>
-      <div><b>Email</b><span>your-email@example.com</span></div>
-      <div><b>Languages</b><span>English, Hindi</span></div> <!-- EDIT: check this is right -->
-    </div>
-  </section>
-
-  <section id="skills">
-    <h2>Skills</h2>
-    <!-- EDIT: set each bar with --w and the label to your honest level -->
-    <div class="skills">
-      <div><div class="skill">AWS <small>EKS, ECS, Lambda</small></div><div class="bar"><i style="--w:85%"></i></div></div>
-      <div><div class="skill">Kubernetes &amp; Helm</div><div class="bar"><i style="--w:85%"></i></div></div>
-      <div><div class="skill">Terraform</div><div class="bar"><i style="--w:85%"></i></div></div>
-      <div><div class="skill">Azure &amp; Azure DevOps</div><div class="bar"><i style="--w:75%"></i></div></div>
-      <div><div class="skill">Ansible</div><div class="bar"><i style="--w:70%"></i></div></div>
-      <div><div class="skill">OCI</div><div class="bar"><i style="--w:60%"></i></div></div>
-      <div><div class="skill">MLOps <small>Azure ML, DataRobot, Databricks</small></div><div class="bar"><i style="--w:70%"></i></div></div>
-    </div>
-  </section>
-
-  <section id="projects">
-    <h2>Projects</h2>
-    <!-- EDIT: replace each card with a real project, and link it to its GitHub repo or write-up -->
-    <div class="cards">
-      <div class="card"><h3>Project name</h3><p>One or two lines on the problem, your approach, the tools you used and the result, ideally with a number.</p><a href="https://github.com/your-github-username/your-repo">View on GitHub</a></div>
-      <div class="card"><h3>Project name</h3><p>For example: a Terraform module, a CI/CD pipeline or a Kubernetes setup you can share without exposing employer code.</p><a href="https://github.com/your-github-username/your-repo">View on GitHub</a></div>
-      <div class="card"><h3>Project name</h3><p>Personal and open-source projects work best here. Keep confidential work out.</p><a href="https://github.com/your-github-username/your-repo">View on GitHub</a></div>
-    </div>
-  </section>
-
-  <section id="experience">
-    <h2>Work experience</h2>
-    <!-- EDIT: replace the hint bullets with what you actually did -->
-    <div class="job">
-      <div class="when">Apr 2026 – present</div>
-      <div>
-        <h3>Platform Engineer (Emerging Lead)</h3>
-        <div class="where">State Street Corporation, Bangalore</div>
-        <ul><li>What you own or lead, in one line.</li><li>A result with a number, such as time saved or reliability gained.</li></ul>
-      </div>
-    </div>
-    <div class="job">
-      <div class="when">Jan 2022 – Apr 2026</div>
-      <div>
-        <h3>Intern, Associate 2, Senior Associate</h3>
-        <div class="where">State Street Corporation, Bangalore</div>
-        <ul><li>Cloud and DevOps work across AWS, Azure and OCI.</li><li>MLOps work on Azure ML, DataRobot and Databricks.</li></ul>
-      </div>
-    </div>
-  </section>
-
-  <section id="publications">
-    <h2>Research publications</h2>
-    <!-- EDIT: use the full citation of each paper and link its DOI -->
-    <ul class="plain">
-      <li>Paper on knowledge graphs and stock price prediction. <a href="#">DOI</a></li>
-      <li>Paper on predicting student performance. <a href="#">DOI</a></li>
-      <li>Paper on peak detection in heart sound signals. <a href="#">DOI</a></li>
-    </ul>
-  </section>
-
-  <section id="education" style="border-bottom:0">
-    <h2>Education</h2>
-    <div class="job">
-      <div class="when">2018 – 2022</div>
-      <div>
-        <h3>B.Tech in Information Technology</h3>
-        <div class="where">KIIT, Bhubaneswar, India</div>
-      </div>
-    </div>
-  </section>
-
+  <noscript><p>This page needs JavaScript to show its content.</p></noscript>
+  <p id="err" hidden>Couldn’t load resume.json. Check that it is in the same folder as index.html and is valid JSON.</p>
+  <section id="about"><h2>About</h2><div id="about-text"></div><div class="info" id="info"></div></section>
+  <section id="skills"><h2>Skills</h2><div class="skills" id="skills-list"></div></section>
+  <section id="projects"><h2>Projects</h2><div class="cards" id="projects-list"></div></section>
+  <section id="experience"><h2>Work experience</h2><div id="work-list"></div></section>
+  <section id="publications"><h2>Research publications</h2><ul class="plain" id="pubs-list"></ul></section>
+  <section id="certifications"><h2>Certifications &amp; awards</h2><ul class="plain" id="certs-list"></ul></section>
+  <section id="education" style="border-bottom:0"><h2>Education</h2><div id="edu-list"></div></section>
 </main>
 
-<footer><div class="wrap">© 2026 Yashaswi Upmon. Views here are my own and not State Street’s.</div></footer>
+<footer><div class="wrap" id="foot"></div></footer>
+
+<script>
+// Builds the whole page from resume.json, so you only ever edit that one file.
+const $ = id => document.getElementById(id);
+const safe = u => /^(https?:|mailto:)/.test(u || "") ? u : "";
+function h(tag, props, ...kids) {
+  const e = document.createElement(tag);
+  for (const k in props || {}) k === "class" ? e.className = props[k] : e.setAttribute(k, props[k]);
+  kids.flat().forEach(k => { if (k != null && k !== "") e.append(k.nodeType ? k : document.createTextNode(k)); });
+  return e;
+}
+const link = (text, url) => safe(url) ? h("a", { href: url }, text) : null;
+
+fetch("resume.json?v=" + Date.now(), { cache: "no-store" })
+  .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(d => {
+    document.title = d.name + " – Platform Engineer";
+    $("name").textContent = d.name;
+    $("tagline").textContent = d.tagline || "";
+    $("resume").href = d.resumeFile || "resume.pdf";
+    const initials = d.name.split(/\s+/).map(w => w[0]).slice(0, 2).join("").toUpperCase();
+    const img = h("img", { src: d.photo || "", alt: "Portrait of " + d.name });
+    img.onerror = () => img.remove();
+    $("photo").append(img, initials);
+    (d.links || []).forEach(l => $("links").append(link(l.label, l.url) || ""));
+
+    (d.about || []).forEach(t => $("about-text").append(h("p", {}, t)));
+    (d.info || []).forEach(i => $("info").append(h("div", {}, h("b", {}, i.label), h("span", {}, i.value))));
+
+    (d.skills || []).forEach(g => $("skills-list").append(
+      h("div", {}, h("h3", { class: "grp" }, g.group), h("div", { class: "chips" }, (g.items || []).map(i => h("span", {}, i))))));
+
+    (d.projects || []).forEach(p => $("projects-list").append(
+      h("div", { class: "card" }, h("h3", {}, p.title), h("p", {}, p.description), link("View project", p.url))));
+
+    (d.work || []).forEach(w => $("work-list").append(h("div", { class: "job" },
+      h("div", { class: "when" }, w.dates),
+      h("div", {}, h("h3", {}, w.title), h("div", { class: "where" }, w.company),
+        h("ul", {}, (w.bullets || []).map(b => h("li", {}, b)))))));
+
+    (d.publications || []).forEach(p => $("pubs-list").append(
+      h("li", {}, link(p.citation, p.url) || p.citation, " ", h("span", { class: "pub-venue" }, p.venue ? "· " + p.venue : ""),
+        p.description ? h("p", { class: "pub-desc" }, p.description) : "")));
+
+    (d.certifications || []).forEach(c => $("certs-list").append(h("li", {}, link(c.name, c.url) || c.name)));
+    (d.awards || []).forEach(a => $("certs-list").append(h("li", {}, a)));
+
+    // Hide any section whose list is empty in resume.json
+    const hide = id => { $(id).remove(); const n = document.querySelector('nav a[href="#' + id + '"]'); if (n) n.remove(); };
+    if (!(d.projects || []).length) hide("projects");
+    if (!(d.certifications || []).length && !(d.awards || []).length) hide("certifications");
+
+    (d.education || []).forEach(e => $("edu-list").append(h("div", { class: "job" },
+      h("div", { class: "when" }, e.dates),
+      h("div", {}, h("h3", {}, e.title), h("div", { class: "where" }, e.school)))));
+
+    $("foot").textContent = "© " + new Date().getFullYear() + " " + d.name + ". Views here are my own and not my employer’s.";
+  })
+  .catch(() => { $("err").hidden = false; });
+</script>
 </body>
 </html>

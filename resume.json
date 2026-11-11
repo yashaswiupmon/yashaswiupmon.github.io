@@ -1,0 +1,192 @@
+{
+  "name": "Yashaswi Upmon",
+  "tagline": "Platform engineer building Kubernetes platforms, infrastructure as code and observability on AWS, Azure and OCI",
+  "photo": "images/photo.jpg",
+  "resumeFile": "resume.pdf",
+  "links": [
+    {
+      "label": "GitHub",
+      "url": "https://github.com/yashaswiupmon"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/yashaswi-upmon-149491148"
+    },
+    {
+      "label": "Email",
+      "url": "mailto:yashaswiupmon2407@gmail.com"
+    }
+  ],
+  "about": [
+    "Hello, I’m Yashaswi. I’m a platform engineer at State Street in Bangalore, where I joined as an intern in January 2022 and now lead platform work as an Emerging Lead. I build the Kubernetes platforms, infrastructure as code and observability that application teams deploy on, across AWS, Azure and OCI.",
+    "Earlier in my career I worked in MLOps on Azure ML, DataRobot and Databricks. I studied Information Technology at KIIT, Bhubaneswar, and have published three research papers."
+  ],
+  "info": [
+    {
+      "label": "Location",
+      "value": "Bangalore, India"
+    },
+    {
+      "label": "Email",
+      "value": "yashaswiupmon2407@gmail.com"
+    }
+  ],
+  "skills": [
+    {
+      "group": "Cloud Platform",
+      "items": [
+        "AWS",
+        "Azure",
+        "OCI"
+      ]
+    },
+    {
+      "group": "Containers & Orchestration",
+      "items": [
+        "Kubernetes",
+        "Helm",
+        "Karpenter",
+        "KEDA",
+        "FluxCD",
+        "Docker"
+      ]
+    },
+    {
+      "group": "IaC & CI/CD",
+      "items": [
+        "Terraform",
+        "Terragrunt",
+        "Ansible",
+        "Azure DevOps",
+        "Harness",
+        "Jenkins",
+        "GitHub Actions"
+      ]
+    },
+    {
+      "group": "Observability & Security",
+      "items": [
+        "OpenTelemetry",
+        "Azure Monitor",
+        "HashiCorp Vault",
+        "TLS / AWS Service Connect"
+      ]
+    },
+    {
+      "group": "MLOps, Languages & Databases",
+      "items": [
+        "Azure ML",
+        "Databricks",
+        "Python (SDK, Flask)",
+        "Bash",
+        "SQL",
+        "MySQL",
+        "PostgreSQL",
+        "MongoDB"
+      ]
+    }
+  ],
+  "projects": [],
+  "work": [
+    {
+      "dates": "April 2026 – Present",
+      "title": "Platform Engineer, Emerging Lead",
+      "company": "State Street Corporation, Bangalore, India",
+      "bullets": [
+        "Led rollout of AWS EKS Auto Mode as the standard Kubernetes platform, validated with the AWS architecture team against managed node groups.",
+        "Built an Uber Helm chart enforcing security guardrails on Karpenter NodeClass/NodePool, letting app teams self-serve node provisioning within governed limits.",
+        "Architected Kyverno-driven OpenTelemetry sidecar injection for EKS workloads (with AWS architecture team), enriching telemetry with application and platform context and routing file-based and stdout logs through a central OTel collector."
+      ]
+    },
+    {
+      "dates": "April 2024 – April 2026",
+      "title": "Platform Engineer, Senior Associate",
+      "company": "State Street Corporation, Bangalore, India",
+      "bullets": [
+        "Led design and rollout of AWS EKS as the organization’s standardized Kubernetes platform; standardized add-ons (KEDA, Vault Agent Injector, EBS/EFS/S3 CSI, NGINX, ALB Target Group Binding) using an Uber Helm chart approach to ensure consistent, governed, and reusable platform deployments.",
+        "Built serverless, event-driven automation (EventBridge, SQS, Lambda) for sidecar management and FluxCD-based add-on deployments across multi-tenant EKS environments, improving security posture.",
+        "Designed and implemented OpenTelemetry sidecar logging for ECS with parameterized OTel configurations that standardize collection and routing of file-based and stdout logs across heterogeneous applications.",
+        "Secured ECS service-to-service traffic with AWS Service Connect (end-to-end TLS, Service Discovery) and implemented a disaster recovery strategy for high availability and rapid recovery.",
+        "Architected and deployed a dynamic workflow using IAM Identity Center, API Gateway, and AWS Lambda to retrieve IAM group mappings based on user-defined regex patterns, enhancing access control automation and centralized policy enforcement.",
+        "Developed Terraform modules for OCI provisioning, integrated with CI/CD pipelines, boosting deployment frequency by 20%.",
+        "Integrated Azure DevOps pipelines with Ansible jobs to orchestrate database configuration management."
+      ]
+    },
+    {
+      "dates": "June 2022 – April 2024",
+      "title": "Platform Engineer, Associate2",
+      "company": "State Street Corporation, Bangalore, India",
+      "bullets": [
+        "Led the migration of a legacy monolithic application from on-premises to Azure, reducing monthly infrastructure costs by 35%; containerized AI applications with Docker and deployed them on AKS using Helm via CI/CD pipelines, improving scalability, availability and deployment speed.",
+        "Built Azure DevOps pipelines from scratch to automate infrastructure provisioning and management using Terraform and Terragrunt, and configured Azure Log Analytics and Azure Monitor alerts that raise ServiceNow incidents for proactive monitoring.",
+        "Developed pipelines using Python SDK for MLOps, facilitating migration from DataRobot to Azure Machine Learning (AML) and cutting infrastructure costs by 75% while maintaining high availability.",
+        "Managed deployment and resource handling of Databricks using Azure DevOps pipelines and Terraform, enabling application teams to efficiently analyze and process data."
+      ]
+    },
+    {
+      "dates": "January 2022 – June 2022",
+      "title": "Platform Engineer, Intern",
+      "company": "State Street Corporation, Bangalore, India",
+      "bullets": [
+        "Managed DataRobot platform upgrades with Ansible playbooks and built custom Python environment setups; developed back-end APIs integrated with Camunda Process Orchestration for a document ingestion web app.",
+        "Deployed pre-trained machine learning models as Flask REST APIs on GPU compute via Cloudera Data Science Workbench."
+      ]
+    },
+    {
+      "dates": "June 2021 – August 2021",
+      "title": "Machine Learning, Intern",
+      "company": "Consultancy Today, Faridabad, India",
+      "bullets": [
+        "Built a food-recommendation model from user eating patterns, goals and biographical features."
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "citation": "Exploring historical stock price movement using knowledge Graphs",
+      "venue": "Published in FICTA",
+      "description": "Implemented Knowledge Graphs Unsupervised Learning model for predicting average daily percentage in Facebook stock price based on news headline extracted from New York Times.",
+      "url": "https://link.springer.com/chapter/10.1007/978-981-16-6624-7_51"
+    },
+    {
+      "citation": "Student performance prediction using classification models",
+      "venue": "Published in SIC",
+      "description": "Used SMOTE Algorithm to balance the collected data from global universities and leverage various machine learning classification models with hyperparameter tuning.",
+      "url": "https://link.springer.com/chapter/10.1007/978-981-16-9669-5_17"
+    },
+    {
+      "citation": "A peak detection algorithm for localization and classification of heart sounds in PCG signals using K-Means Clustering",
+      "venue": "Published in IEEE",
+      "description": "Fully automated algorithm using K-means clustering to localize and classify heart sounds from PCG signals, achieving a 94.75% classification accuracy with SVM, while reducing computational complexity compared to traditional methods.",
+      "url": "https://www.techrxiv.org/doi/full/10.36227/techrxiv.15134493.v1"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "AWS Certified Machine Learning Engineer - Associate",
+      "url": "https://www.credly.com/badges/3a247e0d-8753-48c2-9e2e-f2c1a2532605/public_url"
+    },
+    {
+      "name": "Oracle Cloud Infrastructure 2023 Certified Foundations Associate",
+      "url": "https://catalog-education.oracle.com/ords/certview/sharebadge?id=063FD4C5F3AB9479F6D624B0F52BF7DC4C4AAFDF8E39BA37FE4DF01FE8BE8C54"
+    },
+    {
+      "name": "AWS Certified Cloud Practitioner (CLF-C02)",
+      "url": "https://www.credly.com/badges/82fe622a-6202-424b-a781-c32e3ed41036"
+    },
+    {
+      "name": "HashiCorp Certified: Terraform Associate (003)",
+      "url": "https://www.credly.com/earner/earned/badge/68111886-d79b-4039-bdd4-3d115a04e317"
+    }
+  ],
+  "awards": [
+    "6+ Managing Director awards (2022–2026): ownership, new-technology adoption, critical delivery with integrity"
+  ],
+  "education": [
+    {
+      "dates": "July 2018 – July 2022",
+      "title": "B.Tech in Information Technology",
+      "school": "Kalinga Institute of Industrial Technology, Bhubaneswar · CGPA: 8.99"
+    }
+  ]
+}
